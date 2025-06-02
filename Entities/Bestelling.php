@@ -8,20 +8,24 @@ use Entities\Klant;
 
 class Bestelling
 {
-    private int $id;
+    private int $bestellingId;
     private Klant $klant;
     private string $bestelDatum;
+    private float $korting;
+    private ?string $bemerking;
 
-    public function __construct(int $id, Klant $klant, string $bestelDatum)
+    public function __construct(int $bestellingId, Klant $klant, string $bestelDatum, float $korting, string $bemerking)
     {
-        $this->id = $id;
+        $this->bestellingId = $bestellingId;
         $this->klant = $klant;
         $this->bestelDatum = $bestelDatum;
+        $this->korting = $korting;
+        $this->bemerking = $bemerking;
     }
 
-    public function getId(): int
+    public function getBestellingId(): int
     {
-        return $this->id;
+        return $this->bestellingId;
     }
 
     public function getKlant(): Klant
@@ -32,5 +36,15 @@ class Bestelling
     public function getBestelDatum(): string
     {
         return $this->bestelDatum;
+    }
+
+    public function getKorting(): float
+    {
+        return $this->korting;
+    }
+
+    public function getBemerking(): ?string
+    {
+        return $this->bemerking;
     }
 }

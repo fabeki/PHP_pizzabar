@@ -8,7 +8,7 @@ use Entities\Voedingswaarde;
 
 class Pizza
 {
-    private int $id;
+    private int $pizzaId;
     private string $pizzaNaam;
     private float $prijs;
     private string $samenstelling;
@@ -16,9 +16,9 @@ class Pizza
     private bool $beschikbaarheid;
     private bool $promo;
 
-    public function __construct(int $id, string $pizzaNaam, float $prijs, string $samenstelling, Voedingswaarde $voedingswaarde, bool $beschikbaarheid, bool $promo)
+    public function __construct(int $pizzaId, string $pizzaNaam, float $prijs, string $samenstelling, Voedingswaarde $voedingswaarde, bool $beschikbaarheid, bool $promo)
     {
-        $this->id = $id;
+        $this->pizzaId = $pizzaId;
         $this->pizzaNaam = $pizzaNaam;
         $this->prijs = $prijs;
         $this->samenstelling = $samenstelling;
@@ -27,9 +27,9 @@ class Pizza
         $this->promo = $promo;
     }
 
-    public function getId(): int
+    public function getPizzaId(): int
     {
-        return $this->id;
+        return $this->pizzaId;
     }
 
     public function getpizzaNaam(): string

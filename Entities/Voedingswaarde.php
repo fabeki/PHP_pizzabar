@@ -7,25 +7,25 @@ namespace entities;
 class Voedingswaarde
 {
 
-    private int $id;
+    private int $voedingswaardeId;
     private float $energie;
     private float $vet;
     private float $koolhydraat;
     private float $eiwit;
 
-    public function __construct(int $id, float $energie, float $vet, float $koolhydraat, float $eiwit)
+    public function __construct(int $voedingswaardeId, float $energie, float $vet, float $koolhydraat, float $eiwit)
     {
 
-        $this->id = $id;
+        $this->voedingswaardeId = $voedingswaardeId;
         $this->energie = $energie;
         $this->vet = $vet;
         $this->koolhydraat = $koolhydraat;
         $this->eiwit = $eiwit;
     }
 
-    public function getId(): int
+    public function getVoedingswaardeId(): int
     {
-        return $this->id;
+        return $this->voedingswaardeId;
     }
 
     public function getEnergie(): float

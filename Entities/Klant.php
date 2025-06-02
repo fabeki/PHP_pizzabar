@@ -8,7 +8,7 @@ use Entities\Plaats;
 
 class Klant
 {
-    private int $id;
+    private int $klantId;
     private string $voornaam;
     private string $familienaam;
     private string $straat;
@@ -17,11 +17,10 @@ class Klant
     private ?string $telefoon;
     private ?string $email;
     private ?string $wachtwoord;
-    private ?float $korting;
 
-    public function __construct(int $id, $voornaam, string $familienaam, string $straat, int $huisnummer, Plaats $plaats, string $telefoon, string $email, string $wachtwoord, float $korting)
+    public function __construct(int $klantId, $voornaam, string $familienaam, string $straat, int $huisnummer, Plaats $plaats, string $telefoon, string $email, string $wachtwoord)
     {
-        $this->id = $id;
+        $this->klantId = $klantId;
         $this->voornaam = $voornaam;
         $this->familienaam = $familienaam;
         $this->straat = $straat;
@@ -30,12 +29,11 @@ class Klant
         $this->telefoon = $telefoon;
         $this->email = $email;
         $this->wachtwoord = $wachtwoord;
-        $this->korting = $korting;
     }
 
-    public function getId(): int
+    public function getKlantId(): int
     {
-        return $this->id;
+        return $this->klantId;
     }
 
     public function getVoornaam(): string
@@ -74,11 +72,6 @@ class Klant
     public function getWachtwoord(): ?string
     {
         return $this->wachtwoord;
-    }
-
-    public function getKorting(): ?float
-    {
-        return $this->korting;
     }
 
     //setters
@@ -121,10 +114,5 @@ class Klant
     public function setWachtwoord(?string $wachtwoord)
     {
         $this->wachtwoord = $wachtwoord;
-    }
-
-    public function setKorting(?float $korting)
-    {
-        $this->korting = $korting;
     }
 }

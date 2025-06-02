@@ -27,11 +27,12 @@ SET time_zone = "+00:00";
 -- Tabelstructuur voor tabel `bestellijnen`
 --
 
-CREATE TABLE `bestellijnen` (
-  `bestellingId` int(11) NOT NULL,
-  `pizzaId` int(11) NOT NULL,
+CREATE TABLE `bestelLijnen` (
+  `bestelling_id` int(11) NOT NULL,
+  `pizza_id` int(11) NOT NULL,
   `aantal` int(11) NOT NULL,
-  `prijs` decimal(6,2) NOT NULL
+  `prijs` decimal(6,2) NOT NULL, 
+  `opmerking` varchar(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -41,10 +42,11 @@ CREATE TABLE `bestellijnen` (
 --
 
 CREATE TABLE `bestellingen` (
-  `id` int(11) NOT NULL,
-  `klantId` int(11) NOT NULL,
+  `bestellingId` int(11) NOT NULL,
+  `klant_id` int(11) NOT NULL,
   `bestelDatum` datetime NOT NULL,
-  `opmerking` varchar(255)
+  `bemerking` varchar(255),
+  `korting` decimal(4,2)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -54,26 +56,24 @@ CREATE TABLE `bestellingen` (
 --
 
 CREATE TABLE `klanten` (
-  `id` int(11) NOT NULL,
+  `klantId` int(11) NOT NULL,
   `voornaam` varchar(55) NOT NULL,
   `familienaam` varchar(55) NOT NULL,
   `straat` varchar(55) NOT NULL,
   `huisnummer` int(3) NOT NULL,
-  `plaatsId` int(11) NOT NULL,
+  `plaats_id` int(11) NOT NULL,
   `telefoon` varchar(25) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `wachtwoord` varchar(255) DEFAULT NULL,
-  `bemerking` varchar(155) DEFAULT NULL,
-  `korting` decimal(4,0) DEFAULT NULL
+  `wachtwoord` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `klanten`
 --
 
-INSERT INTO `klanten` (`id`, `voornaam`, `familienaam`, `straat`, `huisnummer`, `plaatsId`, `telefoon`, `email`, `wachtwoord`, `bemerking`, `korting`) VALUES
-(1, 'Jan', 'Jansen', 'Steenstortstraat', 5, 2, NULL, 'Jan@hotmail.com', 'janneke', 'Niet aanbellen', NULL),
-(2, 'Marie', 'Claire', 'Kruisweg', 190, 4, NULL, 'Marie@hotmail.com', 'marieke', '', NULL);
+INSERT INTO `klanten` (`klantId`, `voornaam`, `familienaam`, `straat`, `huisnummer`, `plaats_id`, `telefoon`, `email`, `wachtwoord`) VALUES
+(1, 'Jan', 'Jansen', 'Steenstortstraat', 5, 2, NULL, 'Jan@hotmail.com', 'janneke'),
+(2, 'Marie', 'Claire', 'Kruisweg', 190, 4, NULL, 'Marie@hotmail.com', 'marieke');
 
 -- --------------------------------------------------------
 
@@ -82,11 +82,11 @@ INSERT INTO `klanten` (`id`, `voornaam`, `familienaam`, `straat`, `huisnummer`, 
 --
 
 CREATE TABLE `pizzas` (
-  `id` int(11) NOT NULL,
+  `pizzaId` int(11) NOT NULL,
   `pizzaNaam` varchar(55) NOT NULL,
   `prijs` decimal(4,0) NOT NULL,
   `samenstelling` varchar(155) NOT NULL,
-  `voedingswaardeId` int(11) NOT NULL,
+  `voedingswaarde_id` int(11) NOT NULL,
   `beschikbaarheid` tinyint(1) NOT NULL,
   `promo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -95,14 +95,14 @@ CREATE TABLE `pizzas` (
 -- Gegevens worden geëxporteerd voor tabel `pizzas`
 --
 
-INSERT INTO `pizzas` (`id`, `pizzaNaam`, `prijs`, `samenstelling`, `voedingswaardeId`, `beschikbaarheid`, `promo`) VALUES
+INSERT INTO `pizzas` (`pizzaId`, `pizzaNaam`, `prijs`, `samenstelling`, `voedingswaarde_id`, `beschikbaarheid`, `promo`) VALUES
 (1, 'Margherita', 10, 'tomatensaus, mozzarella, extra mozzarella & pizzakruiden', 1, 1, 0),
-(2, 'Pepperoni', 11, 'tomatensaus, mozzarella & pepperoni', 1, 1, 0),
-(3, 'Hawaii', 13, 'tomatensaus, mozzarella, extra mozzarella, ham & ananas', 1, 1, 0),
-(4, '4 Cheese', 13, 'tomatensaus, mozzarella, emmentaler, geitenkaas & gorgonzola', 1, 1, 0),
-(5, 'Funghi', 10, 'tomatensaus, mozzarella, champignons & pizzakruiden', 1, 1, 0),
-(6, 'Tonno', 14, 'tomatensaus, mozzarella, tonijn, verse spinazie, ui & zwarte olijven', 1, 1, 0),
-(7, 'Veggi', 12, 'tomatensaus, mozzarella, champignons, verse spinazie, ui, zwarte olijven, paprika, verse tomaat & pizzakruiden', 1, 1, 0);
+(2, 'Pepperoni', 11, 'tomatensaus, mozzarella & pepperoni', 2, 1, 0),
+(3, 'Hawaii', 13, 'tomatensaus, mozzarella, extra mozzarella, ham & ananas', 3, 1, 0),
+(4, '4 Cheese', 13, 'tomatensaus, mozzarella, emmentaler, geitenkaas & gorgonzola', 4, 1, 0),
+(5, 'Funghi', 10, 'tomatensaus, mozzarella, champignons & pizzakruiden', 5, 1, 0),
+(6, 'Tonno', 14, 'tomatensaus, mozzarella, tonijn, verse spinazie, ui & zwarte olijven', 6, 1, 0),
+(7, 'Veggi', 12, 'tomatensaus, mozzarella, champignons, verse spinazie, ui, zwarte olijven, paprika, verse tomaat & pizzakruiden', 7, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,7 @@ INSERT INTO `pizzas` (`id`, `pizzaNaam`, `prijs`, `samenstelling`, `voedingswaar
 --
 
 CREATE TABLE `plaatsen` (
-  `id` int(11) NOT NULL,
+  `plaatsId` int(11) NOT NULL,
   `postcode` varchar(6) NOT NULL,
   `woonplaats` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -120,11 +120,14 @@ CREATE TABLE `plaatsen` (
 -- Gegevens worden geëxporteerd voor tabel `plaatsen`
 --
 
-INSERT INTO `plaatsen` (`id`, `postcode`, `woonplaats`) VALUES
+INSERT INTO `plaatsen` (`plaatsId`, `postcode`, `woonplaats`) VALUES
 (1, '3580', 'Beringen'),
 (2, '3581', 'Beverlo'),
 (3, '3582', 'Koersel'),
-(4, '3583', 'Paal');
+(4, '3583', 'Paal'),
+(3, '3600', 'Genk'),
+(3, '3600', 'Zwartberg'),
+(3, '3600', 'Waterschei');
 
 -- --------------------------------------------------------
 
@@ -133,7 +136,7 @@ INSERT INTO `plaatsen` (`id`, `postcode`, `woonplaats`) VALUES
 --
 
 CREATE TABLE `voedingswaarden` (
-  `id` int(11) NOT NULL,
+  `voedingswaardeId` int(11) NOT NULL,
   `energie` decimal(4,1) NOT NULL,
   `vet` decimal(3,1) NOT NULL,
   `koolhydraat` decimal(3,1) NOT NULL,
@@ -144,7 +147,7 @@ CREATE TABLE `voedingswaarden` (
 -- Gegevens worden geëxporteerd voor tabel `voedingswaarden`
 --
 
-INSERT INTO `voedingswaarden` (`id`, `energie`, `vet`, `koolhydraat`, `eiwit`) VALUES
+INSERT INTO `voedingswaarden` (`voedingswaardeId`, `energie`, `vet`, `koolhydraat`, `eiwit`) VALUES
 (1, 235.0, 12.0, 25.0, 11.0),
 (2, 253.0, 12.0, 25.0, 11.0),
 (3, 201.0, 7.0, 24.0, 9.7),
@@ -161,42 +164,42 @@ INSERT INTO `voedingswaarden` (`id`, `energie`, `vet`, `koolhydraat`, `eiwit`) V
 -- Indexen voor tabel `bestellijnen`
 --
 ALTER TABLE `bestellijnen`
-  ADD PRIMARY KEY (`bestellingId`,`pizzaId`);
+  ADD PRIMARY KEY (`bestelling_id`,`pizza_id`);
 
 --
 -- Indexen voor tabel `bestellingen`
 --
 ALTER TABLE `bestellingen`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_klantId` (`klantId`);
+  ADD PRIMARY KEY (`bestellingId`),
+  ADD KEY `fk_klantId` (`klant_id`);
 
 --
 -- Indexen voor tabel `klanten`
 --
 ALTER TABLE `klanten`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_plaatsId` (`plaatsId`);
+  ADD PRIMARY KEY (`klantId`),
+  ADD KEY `fk_plaatsId` (`plaats_id`);
 
 --
 -- Indexen voor tabel `pizzas`
 --
 ALTER TABLE `pizzas`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`pizzaId`),
   ADD UNIQUE KEY `pizzaNaam_UNIQUE` (`pizzaNaam`),
-  ADD KEY `fk_voedingswaardeId` (`voedingswaardeId`);
+  ADD KEY `fk_voedingswaardeId` (`voedingswaarde_id`);
 
 --
 -- Indexen voor tabel `plaatsen`
 --
 ALTER TABLE `plaatsen`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`plaatsId`),
   ADD UNIQUE KEY `postcode_plaats_UNIQUE` (`postcode`,`woonplaats`);
 
 --
 -- Indexen voor tabel `voedingswaarden`
 --
 ALTER TABLE `voedingswaarden`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`voedingswaardeId`);
 
 --
 -- AUTO_INCREMENT voor geëxporteerde tabellen
@@ -206,31 +209,31 @@ ALTER TABLE `voedingswaarden`
 -- AUTO_INCREMENT voor een tabel `bestellingen`
 --
 ALTER TABLE `bestellingen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `bestellingId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT voor een tabel `klanten`
 --
 ALTER TABLE `klanten`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `klantId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `pizzas`
 --
 ALTER TABLE `pizzas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `pizzaId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT voor een tabel `plaatsen`
 --
 ALTER TABLE `plaatsen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `plaatsId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT voor een tabel `voedingswaarden`
 --
 ALTER TABLE `voedingswaarden`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `voedingswaardeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
@@ -240,19 +243,19 @@ ALTER TABLE `voedingswaarden`
 -- Beperkingen voor tabel `bestellingen`
 --
 ALTER TABLE `bestellingen`
-  ADD CONSTRAINT `fk_klantId` FOREIGN KEY (`klantId`) REFERENCES `klanten` (`id`);
+  ADD CONSTRAINT `fk_klantId` FOREIGN KEY (`klantId`) REFERENCES `klanten` (`klantId`);
 
 --
 -- Beperkingen voor tabel `klanten`
 --
 ALTER TABLE `klanten`
-  ADD CONSTRAINT `fk_plaatsId` FOREIGN KEY (`plaatsId`) REFERENCES `plaatsen` (`id`);
+  ADD CONSTRAINT `fk_plaatsId` FOREIGN KEY (`plaatsId`) REFERENCES `plaatsen` (`plaatsId`);
 
 --
 -- Beperkingen voor tabel `pizzas`
 --
 ALTER TABLE `pizzas`
-  ADD CONSTRAINT `fk_voedingswaardeId` FOREIGN KEY (`voedingswaardeId`) REFERENCES `voedingswaarden` (`id`);
+  ADD CONSTRAINT `fk_voedingswaardeId` FOREIGN KEY (`voedingswaardeId`) REFERENCES `voedingswaarden` (`voedingswaardeId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

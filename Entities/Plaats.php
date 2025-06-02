@@ -6,20 +6,20 @@ namespace Entities;
 
 class Plaats
 {
-    private int $id;
+    private int $plaatsId;
     private int $postcode;
     private string $woonplaats;
 
-    public function __construct(int $id, int $postcode, string $woonplaats)
+    public function __construct(int $plaatsId, int $postcode, string $woonplaats)
     {
-        $this->id = $id;
+        $this->plaatsId = $plaatsId;
         $this->postcode = $postcode;
         $this->woonplaats = $woonplaats;
     }
 
     public function getId(): int
     {
-        return $this->id;
+        return $this->plaatsId;
     }
 
     public function getPostcode(): int

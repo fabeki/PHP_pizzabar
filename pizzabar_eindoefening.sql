@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `bestellijnen`
+-- Tabelstructuur voor tabel `bestelLijnen`
 --
 
 CREATE TABLE `bestelLijnen` (
@@ -161,9 +161,9 @@ INSERT INTO `voedingswaarden` (`voedingswaardeId`, `energie`, `vet`, `koolhydraa
 --
 
 --
--- Indexen voor tabel `bestellijnen`
+-- Indexen voor tabel `bestelLijnen`
 --
-ALTER TABLE `bestellijnen`
+ALTER TABLE `bestelLijnen`
   ADD PRIMARY KEY (`bestelling_id`,`pizza_id`);
 
 --

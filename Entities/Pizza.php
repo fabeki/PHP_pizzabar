@@ -32,7 +32,7 @@ class Pizza
         return $this->pizzaId;
     }
 
-    public function getpizzaNaam(): string
+    public function getPizzaNaam(): string
     {
         return $this->pizzaNaam;
     }

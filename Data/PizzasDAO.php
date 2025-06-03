@@ -22,8 +22,8 @@ class PizzasDAO
 
     public function getAll(): array
     {
-        $sql = "SELECT Pizzas.*, V.energie, V.vet, V.koolhydraat, V.eiwit FROM Pizzas
-                INNER JOIN Voedingswaarden V ON V.voedingswaardeId = Pizzas.voedingswaarde_id";
+        $sql = "SELECT pizzas.*, V.voedingswaardeId,V.energie, V.vet, V.koolhydraat, V.eiwit FROM pizzas
+                INNER JOIN voedingswaarden V ON V.voedingswaardeId = pizzas.voedingswaarde_id";
         $dbh = $this->connect();
         $stmt = $dbh->prepare($sql);
         $stmt->execute();

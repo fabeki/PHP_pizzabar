@@ -7,6 +7,9 @@
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
+CREATE DATABASE IF NOT EXISTS pizzabar_eindoefening;
+USE pizzabar_eindoefening;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -125,9 +128,9 @@ INSERT INTO `plaatsen` (`plaatsId`, `postcode`, `woonplaats`) VALUES
 (2, '3581', 'Beverlo'),
 (3, '3582', 'Koersel'),
 (4, '3583', 'Paal'),
-(3, '3600', 'Genk'),
-(3, '3600', 'Zwartberg'),
-(3, '3600', 'Waterschei');
+(5, '3600', 'Genk'),
+(6, '3600', 'Zwartberg'),
+(7, '3600', 'Waterschei');
 
 -- --------------------------------------------------------
 
@@ -243,19 +246,19 @@ ALTER TABLE `voedingswaarden`
 -- Beperkingen voor tabel `bestellingen`
 --
 ALTER TABLE `bestellingen`
-  ADD CONSTRAINT `fk_klantId` FOREIGN KEY (`klantId`) REFERENCES `klanten` (`klantId`);
+  ADD CONSTRAINT `fk_klantId` FOREIGN KEY (`klant_Id`) REFERENCES `klanten` (`klantId`);
 
 --
 -- Beperkingen voor tabel `klanten`
 --
 ALTER TABLE `klanten`
-  ADD CONSTRAINT `fk_plaatsId` FOREIGN KEY (`plaatsId`) REFERENCES `plaatsen` (`plaatsId`);
+  ADD CONSTRAINT `fk_plaatsId` FOREIGN KEY (`plaats_Id`) REFERENCES `plaatsen` (`plaatsId`);
 
 --
 -- Beperkingen voor tabel `pizzas`
 --
 ALTER TABLE `pizzas`
-  ADD CONSTRAINT `fk_voedingswaardeId` FOREIGN KEY (`voedingswaardeId`) REFERENCES `voedingswaarden` (`voedingswaardeId`);
+  ADD CONSTRAINT `fk_voedingswaardeId` FOREIGN KEY (`voedingswaarde_Id`) REFERENCES `voedingswaarden` (`voedingswaardeId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

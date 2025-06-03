@@ -8,3 +8,5 @@ use Business\PizzaService;
 
 $pizzaSVC = new PizzaService;
 $pizzaLijst = $pizzaSVC->getAllPizzas();
+
+include("Presentation/indexPizzas.php");

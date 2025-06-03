@@ -9,7 +9,7 @@
         <div class="product-container">
 
             <div class="afbeelding-container">
-                <img src="<?= $pizza->getPizzaNaam(); ?>.avif" alt="<?= $pizza->getPizzaNaam(); ?>">
+                <img src="img/<?= $pizza->getPizzaNaam(); ?>.avif" alt="<?= $pizza->getPizzaNaam(); ?>">
             </div>
 
             <div class="omschrijving-container">

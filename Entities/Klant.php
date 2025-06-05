@@ -78,6 +78,11 @@ class Klant
 
     //setters
 
+    public function setKlantId(int $klantId)
+    {
+        $this->klantId = $klantId;
+    }
+
     public function setVoornaam(string $voornaam)
     {
         $this->voornaam = $voornaam;

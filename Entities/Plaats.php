@@ -17,7 +17,7 @@ class Plaats
         $this->woonplaats = $woonplaats;
     }
 
-    public function getId(): int
+    public function getPlaatsId(): int
     {
         return $this->plaatsId;
     }

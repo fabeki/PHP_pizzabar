@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Entities;
 
 use Entities\Plaats;
+use Exceptions\OngeldigEmailadresException;
+use Exceptions\WachtwoordenKomenNietOvereenException;
 
 class Klant
 {
@@ -15,8 +17,8 @@ class Klant
     private int $huisnummer;
     private Plaats $plaats;
     private ?string $telefoon;
-    private ?string $email;
-    private ?string $wachtwoord;
+    private string $email;
+    private string $wachtwoord;
 
     public function __construct(int $klantId, $voornaam, string $familienaam, string $straat, int $huisnummer, Plaats $plaats, string $telefoon, string $email, string $wachtwoord)
     {
@@ -64,12 +66,12 @@ class Klant
     {
         return $this->telefoon;
     }
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function getWachtwoord(): ?string
+    public function getWachtwoord(): string
     {
         return $this->wachtwoord;
     }
@@ -106,13 +108,20 @@ class Klant
         $this->telefoon = $telefoon;
     }
 
-    public function setEmail(?string $email)
+    public function setEmail(string $email)
     {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new OngeldigEmailadresException();
+        }
+
         $this->email = $email;
     }
 
-    public function setWachtwoord(?string $wachtwoord)
+    public function setWachtwoord(string $wachtwoord, string $wachtwoordHerhaal)
     {
-        $this->wachtwoord = $wachtwoord;
+        if ($wachtwoord !== $wachtwoordHerhaal) {
+            throw new WachtwoordenKomenNietOvereenException();
+        }
+        $this->wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
     }
 }

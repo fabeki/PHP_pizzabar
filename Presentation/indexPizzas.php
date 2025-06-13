@@ -71,7 +71,7 @@
                         endforeach; ?>
 
                         <div>Totaal €<?= number_format($tot, 2); ?></div>
-                        <div><input type="submit" value="Afrekenen"></div>
+                        <div><input type="submit" value="Afrekenen" name="afrekenen"></div>
                     </div>
 
                 <?php else: ?>

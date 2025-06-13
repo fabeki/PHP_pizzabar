@@ -30,7 +30,7 @@ class PlaatsenDAO
         if (empty($record)) return null;
 
         return new Plaats(
-            (int)$record['id'],
+            (int)$record['plaatsId'],
             (int)$record['postcode'],
             $record['woonplaats']
         );

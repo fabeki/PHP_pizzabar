@@ -2,7 +2,17 @@
 
 declare(strict_types=1);
 
+spl_autoload_register();
+
+session_start();
+
+use Exceptions\GebruikerBestaatAlException;
+use Exceptions\OngeldigEmailadresException;
+use Exceptions\WachtwoordenKomenNietOvereenException;
+use Business\KlantService;
+
 $error = "";
+$klantSVC = new KlantService();
 // 1. controle of alle velden ingevuld zijn
 if (isset($_POST["btnRegistreer"])) {
     $voornaam = "";
@@ -11,7 +21,7 @@ if (isset($_POST["btnRegistreer"])) {
     $huisnr = "";
     $postcode = "";
     $woonplaats = "";
-    $tel = "";
+    $tel = $_POST["txtTel"] ?? "";
     $email = "";
     $ww = "";
     $wwHerhaal = "";
@@ -52,10 +62,6 @@ if (isset($_POST["btnRegistreer"])) {
         $error .= "Woonplaats moet ingevuld worden.";
     }
 
-    if (!empty($_POST["txtTelefoon"])) {
-        $tel = $_POST["txtTelefoon"];
-    }
-
     if (!empty($_POST["txtEmail"])) {
         $email = $_POST["txtEmail"];
     } else {
@@ -70,5 +76,30 @@ if (isset($_POST["btnRegistreer"])) {
     }
 
     if ($error == "") {
+        try {
+            $klant = $klantSVC->createKlant(
+                $voornaam,
+                $familienaam,
+                $straat,
+                (int) $huisnr,
+                (int) $postcode,
+                $woonplaats,
+                (string) $tel,
+                $email,
+                $ww,
+                $wwHerhaal
+            );
+            $_SESSION["klant"] = serialize($klant);
+            header("Location: ctrlIndexPizzas.php");
+            exit(0);
+        } catch (OngeldigEmailadresException $e) {
+            $error .= "Het ingevulde e-mailadres is niet geldig.";
+        } catch (WachtwoordenKomenNietOvereenException $e) {
+            $error .= "De ingevulde wachtwoorden komen niet overeen.";
+        } catch (GebruikerBestaatAlException $e) {
+            $error .= "Er bestaat al een gebruiker met dit e-mailadres.";
+        }
     }
 }
+
+include("Presentation/registerForm.php");

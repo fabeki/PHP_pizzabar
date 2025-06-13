@@ -12,13 +12,13 @@
 
             <div class="labels">
                 <label for="txtVoornaam">Voornaam:
-                    <input type="text" name="txtVoornaam" placeholder="Vul hier voornaam in." required>
+                    <input type="text" name="txtVoornaam" value="<?= htmlspecialchars($_POST['txtVoornaam'] ?? '') ?>" placeholder="Vul hier voornaam in." required>
                 </label>
             </div>
 
             <div class="labels">
                 <label for="txtFamilienaam">Familienaam:
-                    <input type="text" name="txtFamilienaam" placeholder="Vul hier uw familienaam in." required>
+                    <input type="text" name="txtFamilienaam" value="<?= htmlspecialchars($_POST['txtFamilienaam'] ?? '') ?>" placeholder="Vul hier uw familienaam in." required>
                 </label>
             </div>
 

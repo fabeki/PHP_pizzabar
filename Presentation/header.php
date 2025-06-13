@@ -35,12 +35,12 @@ declare(strict_types=1);
     <header>
         <h1>Fabeki Pizzeria</h1>
         <nav>
-            <a href="indexPizzas.php">Overzicht pizza's</a>
+            <a href="ctrlIndexPizzas.php">Overzicht pizza's</a>
             <?php if (!isset($_SESSION["gebruiker"])) { ?>
-                <a href="loginForm.php">Login</a>
-                <a href="registerForm.php">Registreer</a>
+                <a href="ctrlLogin.php">Login</a>
+                <a href="ctrlRegister.php">Registreer</a>
             <?php } else { ?>
-                <a href="overzichtBestelling.php">Mijn bestelling</a>
+                <a href="ctrlOverzichtBestelling.php">Mijn bestelling</a>
             <?php } ?>
             <a href="algemeenInfo.php">Algemeen info</a>
         </nav>

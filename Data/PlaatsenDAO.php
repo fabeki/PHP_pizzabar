@@ -50,4 +50,25 @@ class PlaatsenDAO
         );
         return (int)$dbh->lastInsertId();
     }
+
+    public function getPlaatsenByPostcodes(array $postcodes): array
+    {
+        //array_fill(index, 3, '?') => ['?', '?', '?'] (maak string met implode (?,?,?) )
+        $inQuery = implode(',', array_fill(0, count($postcodes), '?'));
+        $sql = "SELECT * FROM plaatsen WHERE postcode IN ($inQuery)";
+        $dbh = $this->connect();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute($postcodes);
+        $resultSet = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $plaatsen = [];
+        foreach ($resultSet as $result) {
+            $plaatsen[] =  new Plaats(
+                (int)$result['plaatsId'],
+                (int)$result['postcode'],
+                $result['woonplaats']
+            );
+        }
+        return $plaatsen;
+    }
 }

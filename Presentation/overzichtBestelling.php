@@ -14,19 +14,19 @@ $minTijd = $huidigeTijd->format('Y-m-d\TH:i');
         <th>Prijs/Stuk</th>
         <th>TotaalPrijs</th>
     </tr>
-    <?php // foreach ($mandje as $artikel): 
+    <?php foreach ($mandje as $artikel):
     ?>
-    <tr>
-        <td>//naam</td>
-        <td>//aantal</td>
-        <td>//prijs/stuk</td>
-        <td>//totprijs</td>
-    </tr>
-    <?php // endforeach; 
+        <tr>
+            <td><?= $artikel["naam"] ?></td>
+            <td><?= $artikel["aantal"] ?></td>
+            <td>€<?= $artikel["prijs"] ?></td>
+            <td>€<?= $artikel["subTot"] ?></td>
+        </tr>
+    <?php endforeach;
     ?>
     <tr>
         <td colspan="3">Totaal</td>
-        <td>€ </td>
+        <td>€ <?= $tot ?></td>
     </tr>
 </table>
 

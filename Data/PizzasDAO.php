@@ -59,10 +59,10 @@ class PizzasDAO
     {
         $sql = "SELECT pizzas.*, V.voedingswaardeId,V.energie, V.vet, V.koolhydraat, V.eiwit FROM pizzas
                 INNER JOIN voedingswaarden V ON V.voedingswaardeId = pizzas.voedingswaarde_id
-                WHERE p.pizzaId = :id";
+                WHERE pizzaId = :id";
         $dbh = $this->connect();
         $stmt = $dbh->prepare($sql);
-        $stmt->execute([':pizzaId' => $id]);
+        $stmt->execute([':id' => $id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $pizza = [];
         if (empty($row)) {

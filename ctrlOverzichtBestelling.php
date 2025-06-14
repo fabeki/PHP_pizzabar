@@ -22,7 +22,7 @@ if (isset($_SESSION["mandje"])) {
         $tot += $subTot;
 
         $mandje[] = [
-            'naam' => $pizza->getNaam(),
+            'naam' => $pizza->getPizzaNaam(),
             'aantal' => $aantal,
             'prijs' => $prijs,
             'subTot' => $subTot

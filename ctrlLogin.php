@@ -16,12 +16,12 @@ if (isset($_POST["btnLogin"])) {
     $klant = $klantSVC->controleerLogin($email, $ww);
 
     if ($klant === null) {
-        include("Presentation/loginForm.php");
+        include("/Pizzabar/ctrlLogin.php");
         exit();
     } else {
-        $_SESSION["gebruiker"] = $klant;
-        header("Location: Presentation/overzichtBestelling.php");
-        exit();
+        $_SESSION["gebruiker"] = serialize($klant);
+        header("Location: /Pizzabar/ctrlOverzichtBestelling.php");
+        exit(0);
     }
 }
 

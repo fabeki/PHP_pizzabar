@@ -89,7 +89,7 @@ if (isset($_POST["btnRegistreer"])) {
                 $ww,
                 $wwHerhaal
             );
-            $_SESSION["klant"] = serialize($klant);
+            $_SESSION["gebruiker"] = serialize($klant);
             header("Location: ctrlOverzichtBestelling.php");
             exit(0);
         } catch (OngeldigEmailadresException $e) {

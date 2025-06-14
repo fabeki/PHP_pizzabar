@@ -2,9 +2,7 @@
 
 <section class="register-container">
 
-    <header>
-        <h2>Registreren</h2>
-    </header>
+    <h2>Registreren</h2>
 
     <div class="form">
 
@@ -25,31 +23,31 @@
 
             <div class="labels">
                 <label for="txtStraat">Straat:
-                    <input type="text" name="txtStraat" placeholder="Vul hier uw straat in." required>
+                    <input type="text" name="txtStraat" value="<?= htmlspecialchars($_POST['txtStraat'] ?? '') ?>" placeholder="Vul hier uw straat in." required>
                 </label>
             </div>
 
             <div class="labels">
                 <label for="txtHuisnummer">Huisnummer:
-                    <input type="number" name="txtHuisnummer" placeholder="Vul hier uw huisnummer in." required>
+                    <input type="number" name="txtHuisnummer" value="<?= htmlspecialchars($_POST['txtHuisnummer'] ?? '') ?>" placeholder="Vul hier uw huisnummer in." required>
                 </label>
             </div>
 
             <div class="labels">
                 <label for="txtPostcode">Postcode:
-                    <input type="number" name="txtPostcode" placeholder="Vul hier uw postcode in." required>
+                    <input type="number" name="txtPostcode" value="<?= htmlspecialchars($_POST['txtPostcode'] ?? '') ?>" placeholder="Vul hier uw postcode in." required>
                 </label>
             </div>
 
             <div class="labels">
                 <label for="txtWoonplaats">Woonplaats:
-                    <input type="text" name="txtWoonplaats" placeholder="Vul hier uw woonplaats in." required>
+                    <input type="text" name="txtWoonplaats" value="<?= htmlspecialchars($_POST['txtWoonplaats'] ?? '') ?>" placeholder="Vul hier uw woonplaats in." required>
                 </label>
             </div>
 
             <div class="labels">
                 <label for="txtTelefoon">Telefoon:
-                    <input type="tel" name="txtTel" placeholder="Vul hier uw telefoonnummer in.">
+                    <input type="tel" name="txtTel" value="<?= htmlspecialchars($_POST['txtTel'] ?? '') ?>" placeholder="Vul hier uw telefoonnummer in.">
                 </label>
             </div>
 

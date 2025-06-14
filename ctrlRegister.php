@@ -90,7 +90,7 @@ if (isset($_POST["btnRegistreer"])) {
                 $wwHerhaal
             );
             $_SESSION["klant"] = serialize($klant);
-            header("Location: ctrlIndexPizzas.php");
+            header("Location: ctrlOverzichtBestelling.php");
             exit(0);
         } catch (OngeldigEmailadresException $e) {
             $error .= "Het ingevulde e-mailadres is niet geldig.";

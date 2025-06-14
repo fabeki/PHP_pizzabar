@@ -2,9 +2,7 @@
 
 <section class="login-container">
 
-    <header>
-        <h2>Login</h2>
-    </header>
+    <h2>Login</h2>
 
     <div class="form">
 
@@ -23,7 +21,7 @@
     </div>
 
     <div>
-        <a href="registerForm.php">Account aanmaken</a>
+        <a href="ctrlRegister.php">Account aanmaken</a>
     </div>
 
 </section>

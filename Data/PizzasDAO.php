@@ -54,4 +54,39 @@ class PizzasDAO
         }
         return $pizzas;
     }
+
+    public function getById(int $id): ?Pizza
+    {
+        $sql = "SELECT pizzas.*, V.voedingswaardeId,V.energie, V.vet, V.koolhydraat, V.eiwit FROM pizzas
+                INNER JOIN voedingswaarden V ON V.voedingswaardeId = pizzas.voedingswaarde_id
+                WHERE p.pizzaId = :id";
+        $dbh = $this->connect();
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute([':pizzaId' => $id]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $pizza = [];
+        if (empty($row)) {
+            return null;
+        }
+
+        $voedingswaarde = new Voedingswaarde(
+            (int)$row["voedingswaardeId"],
+            (float)$row["energie"],
+            (float)$row["vet"],
+            (float)$row["koolhydraat"],
+            (float)$row["eiwit"]
+        );
+
+        $pizza = new Pizza(
+            (int)$row["pizzaId"],
+            $row["pizzaNaam"],
+            (float)$row["prijs"],
+            $row["samenstelling"],
+            $voedingswaarde,
+            (bool)$row["beschikbaarheid"],
+            (bool)$row["promo"]
+        );
+
+        return $pizza;
+    }
 }

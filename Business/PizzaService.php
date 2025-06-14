@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Business;
 
 use Data\PizzasDAO;
+use Entities\Pizza;
 
 class PizzaService
 {
@@ -20,5 +21,11 @@ class PizzaService
     {
         $pizzaLijst = $this->pizzasDAO->getAll();
         return $pizzaLijst;
+    }
+
+    public function getPizzaById(int $id): ?Pizza
+    {
+        $pizza_id = $this->pizzasDAO->getById($id);
+        return $pizza_id;
     }
 }

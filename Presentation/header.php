@@ -42,6 +42,6 @@ declare(strict_types=1);
             <?php } else { ?>
                 <a href="ctrlOverzichtBestelling.php">Mijn bestelling</a>
             <?php } ?>
-            <a href="Presentation/algemeenInfo.php">Algemeen info</a>
+            <a href="ctrlInfo.php">Algemeen info</a>
         </nav>
     </header>

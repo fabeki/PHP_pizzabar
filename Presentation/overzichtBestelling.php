@@ -1,10 +1,5 @@
-<?php require_once("header.php");
+<?php require_once("header.php"); ?>
 
-$huidigeTijd = new DateTime();
-$huidigeTijd->add(new DateInterval('PT30M'));
-$minTijd = $huidigeTijd->format('Y-m-d\TH:i');
-
-?>
 <h2>Overzicht bestelling</h2>
 
 <table>

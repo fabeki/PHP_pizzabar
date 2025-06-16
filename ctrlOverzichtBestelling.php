@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-spl_autoload_register();
-
 session_start();
+
+spl_autoload_register();
 
 use Business\PizzaService;
 use Business\PlaatsService;

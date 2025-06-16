@@ -28,7 +28,7 @@
 <section>
     <h3>Zoek gemeente voor levering</h3>
 
-    <form action="#" method="post">
+    <form action="verwerkBestelling.php" method="post">
 
         <label for="gemeente">Kies gemeente:</label>
 
@@ -44,6 +44,11 @@
         <h3>Tijdstip levering</h3>
         <div>
             <input type="datetime-local" name="leveringsDatum" min="<?= $minTijd; ?>" required>
+        </div>
+
+        <h3>Extra bemerkingen</h3>
+        <div>
+            <textarea name="bemerking" cols="30" rows="3" place placeholder="Eventuele wensen voor de levering."></textarea>
         </div>
 
         <div>

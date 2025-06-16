@@ -47,4 +47,9 @@ class Bestelling
     {
         return $this->bemerking;
     }
+
+    public function setBestellingId(int $bestellingId)
+    {
+        $this->bestellingId = $bestellingId;
+    }
 }

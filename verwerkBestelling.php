@@ -7,6 +7,7 @@ session_start();
 spl_autoload_register();
 
 use Business\BestellingService;
+use Business\BestelLijnService;
 
 $klant = unserialize($_SESSION["gebruiker"]);
 
@@ -23,11 +24,13 @@ $bestellingId = $bestellingSVC->createBestelling(
     klant: $klant,
     besteldatum: $leveringsDatum,
     korting: $korting,
-    bemerking: $bemerking,
-    //mandje: $_SESSION["mandje"]
+    bemerking: $bemerking
 );
 
-//unset($_SESSION["mandje"]);
+$bestellijnSVC = new BestelLijnService();
+$bestellijnSVC->createBestelLijnen($_SESSION["mandje"], $bestellingId);
 
-header("Location: bevestigingBestelling.php");
+unset($_SESSION["mandje"]);
+
+header("Location: Presentation/bevestigingBestelling.php");
 exit;

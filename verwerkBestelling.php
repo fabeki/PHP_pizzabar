@@ -32,5 +32,5 @@ $bestellijnSVC->createBestelLijnen($_SESSION["mandje"], $bestellingId);
 
 unset($_SESSION["mandje"]);
 
-header("Location: Presentation/bevestigingBestelling.php");
+header("Location: ctrlBevestiging.php");
 exit;

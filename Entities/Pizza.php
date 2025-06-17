@@ -39,6 +39,10 @@ class Pizza
 
     public function getPrijs(): float
     {
+        if ($this->promo) {
+
+            return $this->prijs * 0.80;
+        }
         return $this->prijs;
     }
 
@@ -60,5 +64,15 @@ class Pizza
     public function getPromo(): bool
     {
         return $this->promo;
+    }
+
+    public function setBeschikbaarheid(bool $beschikbaarheid)
+    {
+        $this->beschikbaarheid = $beschikbaarheid;
+    }
+
+    public function setPromo(bool $promo)
+    {
+        $this->promo = $promo;
     }
 }

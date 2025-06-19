@@ -20,8 +20,16 @@
     <?php endforeach;
     ?>
     <tr>
-        <td colspan="3">Totaal</td>
+        <td colspan="3">Subtotaal</td>
         <td>€ <?= $tot ?></td>
+    </tr>
+    <tr>
+        <td colspan="3">Korting</td>
+        <td>- € <?= $kortingTot ?></td>
+    </tr>
+    <tr>
+        <td colspan="3">Totaal</td>
+        <td>€ <?= $tot - $kortingTot ?></td>
     </tr>
 </table>
 

@@ -13,6 +13,8 @@ use Business\PlaatsService;
 $pizzaSVC = new PizzaService();
 $tot = 0;
 $mandje = [];
+$aantalPizzas = 0;
+$kortingTot = 0;
 
 if (isset($_SESSION["mandje"])) {
     foreach ($_SESSION["mandje"] as $pizzaId => $aantal) {
@@ -20,6 +22,7 @@ if (isset($_SESSION["mandje"])) {
         $prijs = $pizza->getPrijs();
         $subTot = $prijs * $aantal;
         $tot += $subTot;
+        $aantalPizzas += $aantal;
 
         $mandje[] = [
             'naam' => $pizza->getPizzaNaam(),
@@ -28,6 +31,13 @@ if (isset($_SESSION["mandje"])) {
             'subTot' => $subTot
         ];
     }
+    if ($tot > 50) {
+        $kortingTot += 5;
+    }
+    if ($aantalPizzas >= 10) {
+        $kortingTot += 10;
+    }
+    $_SESSION["korting"] = $kortingTot;
 }
 
 //leveringplaats 

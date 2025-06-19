@@ -10,6 +10,8 @@ use Entities\Klant;
 use Entities\Plaats;
 use Exceptions\OngeldigEmailadresException;
 use Exceptions\WachtwoordenKomenNietOvereenException;
+use Exceptions\WachtwoordIncorrectException;
+use Exceptions\GebruikerBestaatNietException;
 
 class KlantService
 {
@@ -26,13 +28,13 @@ class KlantService
         $klant = $this->klantenDAO->getByEmail($email);
 
         if ($klant === null) {
-            return null;
+            throw new GebruikerBestaatNietException;
         }
 
-        if (password_verify($ww, $klant->getWachtwoord())) {
-            return $klant;
+        if (!password_verify($ww, $klant->getWachtwoord())) {
+            throw new WachtwoordIncorrectException;
         }
-        return null;
+        return $klant;
     }
 
     public function createKlant(

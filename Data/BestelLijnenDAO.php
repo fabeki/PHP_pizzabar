@@ -6,7 +6,6 @@ namespace Data;
 
 use \PDO;
 use Data\DBConfig;
-use Entities\BestelLijn;
 
 class BestelLijnenDAO
 {
@@ -19,10 +18,10 @@ class BestelLijnenDAO
         );
     }
 
-    public function create(int $bestellingId, int $pizzaId, int $aantal, float $prijs, ?string $opmerking)
+    public function create(int $bestellingId, int $pizzaId, int $aantal, float $prijs)
     {
-        $sql = "INSERT INTO bestellijnen (bestelling_id, pizza_id, aantal, prijs, opmerking)
-                VALUES(:bestelling_id, :pizza_id, :aantal, :prijs, :opmerking)";
+        $sql = "INSERT INTO bestellijnen (bestelling_id, pizza_id, aantal, prijs)
+                VALUES(:bestelling_id, :pizza_id, :aantal, :prijs)";
         $dbh = $this->connect();
         $stmt = $dbh->prepare($sql);
         $stmt->execute(
@@ -30,8 +29,7 @@ class BestelLijnenDAO
                 ':bestelling_id'  => $bestellingId,
                 ':pizza_id'  => $pizzaId,
                 ':aantal' => $aantal,
-                ':prijs' => $prijs,
-                ':opmerking' => $opmerking
+                ':prijs' => $prijs
             ]
         );
     }

@@ -29,8 +29,7 @@ class BestelLijnService
                 bestellingId: $bestellingId,
                 pizzaId: (int) $pizzaId,
                 aantal: (int) $aantal,
-                prijs: (float) $pizza->getPrijs(),
-                opmerking: $opmerking ?? null
+                prijs: (float) $pizza->getPrijs()
             );
         }
     }

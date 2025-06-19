@@ -26,10 +26,13 @@
                             <p>€<?= $pizza->getPrijs(); ?></p>
                             <p><?= $pizza->getSamenstelling(); ?></p>
                             <div class="voedingswaarden">
-                                <p>Energie: <?= $pizza->getVoedingswaarde()->getEnergie(); ?> Kcal</p>
-                                <p>Vetten: <?= $pizza->getVoedingswaarde()->getVet(); ?> g</p>
-                                <p>Koolhydraten: <?= $pizza->getVoedingswaarde()->getKoolhydraat(); ?> g</p>
-                                <p>Eiwitten: <?= $pizza->getVoedingswaarde()->getEiwit(); ?> g</p>
+                                <details>
+                                    <summary>Voedingswaarden</summary>
+                                    <p>Energie: <?= $pizza->getVoedingswaarde()->getEnergie(); ?> Kcal</p>
+                                    <p>Vetten: <?= $pizza->getVoedingswaarde()->getVet(); ?> g</p>
+                                    <p>Koolhydraten: <?= $pizza->getVoedingswaarde()->getKoolhydraat(); ?> g</p>
+                                    <p>Eiwitten: <?= $pizza->getVoedingswaarde()->getEiwit(); ?> g</p>
+                                </details>
                             </div>
 
                         </div>

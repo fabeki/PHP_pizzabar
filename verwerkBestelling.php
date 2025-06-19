@@ -15,7 +15,7 @@ $plaatsId = (int)$_POST["plaatsId"];
 
 $leveringsDatum = new DateTime($_POST["leveringsDatum"]);
 
-$korting = 0;
+$korting = $_SESSION["korting"] ?? 0;
 
 $bemerking = $_POST["bemerking"] ?? null;
 
@@ -30,7 +30,7 @@ $bestellingId = $bestellingSVC->createBestelling(
 $bestellijnSVC = new BestelLijnService();
 $bestellijnSVC->createBestelLijnen($_SESSION["mandje"], $bestellingId);
 
-unset($_SESSION["mandje"]);
+unset($_SESSION["gebruiker"], $_SESSION["mandje"], $_SESSION["korting"]);
 
 header("Location: ctrlBevestiging.php");
 exit;

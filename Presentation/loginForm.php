@@ -6,17 +6,22 @@
 
     <div class="form">
 
-        <form action="ctrlLogin.php" method="post">
-            <div class="email">
-                <label for="txtEmail">E-mail: <input type="email" name="txtEmail" id="txtEmail" placeholder="E-mail" required></label>
-            </div>
-            <div class="wachtwoord">
-                <label for="txtWachtwoord">Wachtwoord: <input type="password" name="txtWachtwoord" id="txtWachtwoord" placeholder="Wachtwoord" required></label>
-            </div>
-            <div class="button">
-                <input type="submit" value="Inloggen" name="btnLogin">
-            </div>
-        </form>
+        <?php if ($error): ?>
+            <div class="error"><?= $error ?></div>
+            <form action="ctrlRegister.php" method="post">
+            <?php endif; ?>
+
+            <form action="ctrlLogin.php" method="post">
+                <div class="email">
+                    <label for="txtEmail">E-mail: <input type="email" name="txtEmail" id="txtEmail" placeholder="E-mail" required></label>
+                </div>
+                <div class="wachtwoord">
+                    <label for="txtWachtwoord">Wachtwoord: <input type="password" name="txtWachtwoord" id="txtWachtwoord" placeholder="Wachtwoord" required></label>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Inloggen" name="btnLogin">
+                </div>
+            </form>
 
     </div>
 

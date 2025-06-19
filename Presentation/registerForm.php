@@ -6,7 +6,10 @@
 
     <div class="form">
 
-        <form action="ctrlRegister.php" method="post">
+        <?php if ($error): ?>
+            <div class="error"><?= $error ?></div>
+            <form action="ctrlRegister.php" method="post">
+            <?php endif; ?>
 
             <div class="labels">
                 <label for="txtVoornaam">Voornaam:
@@ -67,7 +70,7 @@
                 <input type="submit" value="Registreren" name="btnRegistreer">
             </div>
 
-        </form>
+            </form>
 
     </div>
 

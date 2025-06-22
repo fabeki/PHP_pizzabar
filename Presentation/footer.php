@@ -1,5 +1,7 @@
+</div>
+
 <footer>
-    <p>Copyright &copy; FaBeKi pizzeria <?= date("F, Y"); ?></p>
+    <p>Copyright &copy; FaBeKi pizzeria <?= date("F Y"); ?></p>
 </footer>
 
 </body>

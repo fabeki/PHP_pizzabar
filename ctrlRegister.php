@@ -94,10 +94,10 @@ if (isset($_POST["btnRegistreer"])) {
             exit(0);
         } catch (OngeldigEmailadresException $e) {
             $error .= "Het ingevulde e-mailadres is niet geldig.";
-        } catch (WachtwoordenKomenNietOvereenException $e) {
-            $error .= "De ingevulde wachtwoorden komen niet overeen.";
         } catch (GebruikerBestaatAlException $e) {
             $error .= "Er bestaat al een gebruiker met dit e-mailadres.";
+        } catch (WachtwoordenKomenNietOvereenException $e) {
+            $error .= "De ingevulde wachtwoorden komen niet overeen.";
         }
     }
 }

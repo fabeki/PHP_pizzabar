@@ -26,8 +26,20 @@ if (isset($_POST["pizzaId"])) {
 }
 
 if (isset($_GET["remove"])) {
-    $id = $_GET["remove"];
-    unset($_SESSION["mandje"][$id]);
+    $id = (int)$_GET["remove"];
+    if (isset($_SESSION["mandje"][$id])) {
+        if ($_SESSION["mandje"][$id] > 1) {
+            $_SESSION["mandje"][$id]--;
+        } else {
+            unset($_SESSION["mandje"][$id]);
+        }
+    }
+}
+if (isset($_GET["add"])) {
+    $id = (int)$_GET["add"];
+    if (isset($_SESSION["mandje"][$id])) {
+        $_SESSION["mandje"][$id]++;
+    }
 }
 
 include("Presentation/indexPizzas.php");

@@ -13,6 +13,7 @@
 <section>
     <h2>Lopende promoties</h2>
     <ul>
+        <li>Elke woensdag 20% korting!</li>
         <li>Meer dan 10 pizzas besteld? €10 korting.</li>
         <li>Totaalprijs bedraagt meer dan €50? €5 korting.</li>
     </ul>
